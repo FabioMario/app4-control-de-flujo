@@ -1,0 +1,12 @@
+# Valores por defecto de este ejemplo. idf.py los aplica al crear el
+# sdkconfig; para cambiarlos después, `idf.py menuconfig` o borrar sdkconfig.
+
+# Las arquitecturas 1, 2 y 3 son un bucle principal que NUNCA se bloquea, que
+# es exactamente lo que sería un firmware sin RTOS. Debajo, sin embargo, sigue
+# habiendo un FreeRTOS: si la tarea de app_main no cede nunca la CPU, la tarea
+# IDLE no llega a ejecutarse y el watchdog de tareas la da por colgada.
+#
+# Desactivamos SOLO esa comprobación, para poder enseñar el bucle sin RTOS tal
+# y como se escribiría de verdad. En un proyecto con RTOS esto NO se toca:
+# que el IDLE no corra es un síntoma, no una molestia.
+CONFIG_ESP_TASK_WDT_CHECK_IDLE_TASK_CPU0=n
